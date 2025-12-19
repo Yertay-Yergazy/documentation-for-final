@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elimatrix — Linear Algebra Library</title>
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card: #121a2b;
+      --text: #e8ecf7;
+      --muted: #aab4d6;
+      --accent: #6ea8fe;
+      --border: rgba(255,255,255,0.10);
+      --shadow: 0 10px 25px rgba(0,0,0,0.35);
+      --radius: 18px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--sans);
+      color: var(--text);
+      background: radial-gradient(1200px 800px at 20% 10%, rgba(110,168,254,0.18), transparent 60%),
+                  radial-gradient(1000px 700px at 85% 20%, rgba(80, 255, 190, 0.10), transparent 55%),
+                  var(--bg);
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 28px 18px 60px;
+    }
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(110,168,254,0.9), rgba(110,168,254,0.15));
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+    .title h1 {
+      margin: 0;
+      font-size: 22px;
+      line-height: 1.15;
+    }
+    .title p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    nav {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .chip {
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+      font-size: 13px;
+    }
+
+    .hero {
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+    .hero h2 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    @media (min-width: 820px) {
+      .grid { grid-template-columns: 1.2fr 0.8fr; }
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 16px;
+    }
+    .card p, .card li {
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: 14px;
+    }
+    ul { margin: 10px 0 0; padding-left: 18px; }
+
+    .code {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: #eaf0ff;
+      background: rgba(0,0,0,0.25);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px;
+      overflow-x: auto;
+      white-space: pre;
+    }
+    .footer {
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+      opacity: 0.85;
+    }
+    .badge-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+    .badge {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      border-radius: 12px;
+      padding: 8px 10px;
+      font-size: 12px;
+      color: var(--text);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">E</div>
+        <div class="title">
+          <h1>Elimatrix</h1>
+          <p>Линейная алгебра без NumPy: RREF, Gauss, rank, анализ СЛУ</p>
+        </div>
+      </div>
+
+      <nav>
+        <span class="chip">Python 3</span>
+        <span class="chip">No NumPy</span>
+        <span class="chip">Fractions</span>
+        <span class="chip">Tests</span>
+      </nav>
+    </header>
+
+    <section class="hero" id="about">
+      <h2>Что это</h2>
+      <p>
+        <b>Elimatrix</b> — внутренняя библиотека для проекта по Python II.
+        Она реализует базовые алгоритмы линейной алгебры <b>с нуля</b> (без внешних библиотек)
+        и даёт удобные функции для работы с матрицами и системами линейных уравнений (СЛУ).
+      </p>
+      <div class="badge-row">
+        <div class="badge">✔ RREF / REF</div>
+        <div class="badge">✔ Rank</div>
+        <div class="badge">✔ Анализ 0/1/∞ решений</div>
+        <div class="badge">✔ Random generators</div>
+      </div>
+    </section>
+
+    <div class="grid">
+      <section class="card" id="structure">
+        <h3>Архитектура</h3>
+        <p>Структура проекта (минимум):</p>
+        <div class="code">FINAL/
+  elimatrix/
+    __init__.py
+    utils.py
+    gauss.py
+    solve.py
+    decomp.py (optional)
+    eigen.py  (optional)
+  tests/
+    test_gauss_rref.py
+    test_sle_analyze.py</div>
+        <ul>
+          <li><b>gauss.py</b> — RREF, rref_augmented, rank</li>
+          <li><b>solve.py</b> — analyze_sle (0 / 1 / ∞ решений)</li>
+          <li><b>utils.py</b> — random_matrix / random_system</li>
+          <li><b>tests/</b> — тесты + печать результата в терминал</li>
+        </ul>
+      </section>
+
+      <section class="card" id="features">
+        <h3>Функции</h3>
+        <ul>
+          <li><code>rref(A)</code> — приведённая ступенчатая форма матрицы</li>
+          <li><code>rref_augmented(A, b)</code> — RREF для <code>[A|b]</code></li>
+          <li><code>rank(A)</code> — ранг матрицы</li>
+          <li><code>analyze_sle(A, b)</code> — тип решений СЛУ: <b>0 / 1 / ∞</b></li>
+          <li><code>random_matrix(rows, cols)</code> — генерация матриц</li>
+          <li><code>random_system(n)</code> — генерация СЛУ</li>
+        </ul>
+      </section>
+    </div>
+
+    <section class="card" id="usage" style="margin-top:14px;">
+      <h3>Как запустить</h3>
+      <p><b>Тесты</b> (из папки <code>FINAL</code>):</p>
+      <div class="code">python -m tests.test_gauss_rref
+python -m tests.test_sle_analyze</div>
+
+      <p style="margin-top:12px;"><b>Пример использования</b>:</p>
+      <div class="code">from elimatrix import random_system, analyze_sle, rref
+
+A, b = random_system(3)
+result = analyze_sle(A, b)
+
+print("status:", result["status"])
+print("rref([A|b]):", result["rref"])</div>
+    </section>
+
+    <section class="card" id="team" style="margin-top:14px;">
+      <h3>Команда / вклад</h3>
+      <p>
+        Тут можешь вписать участников и кто что делал (например: Gauss + SLE analysis, det/inverse, eigen/QR/LU, презентация).
+      </p>
+      <div class="code">• Member A: Gauss, RREF, Rank, SLE analysis
+• Member B: Determinant, Inverse, LU/QR
+• Member C: Eigen methods, Demo, Presentation</div>
+    </section>
+
+    <div class="footer">
+      Elimatrix • Project page • Made with pure HTML/CSS
+    </div>
+  </div>
+</body>
+</html>
