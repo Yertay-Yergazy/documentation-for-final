@@ -6,15 +6,6 @@
     <title>Elimatrix — Linear Algebra Library</title>
 
     <style>
-      .member img {
-        width: 96px; /* фиксированная ширина */
-        height: 96px; /* фиксированная высота */
-        object-fit: cover; /* обрезает лишнее, сохраняя пропорции */
-        border-radius: 50%; /* делает круглым */
-        display: block;
-        margin: 0 auto 10px;
-      }
-
       :root {
         --bg: #070b16;
         --card: #0f162a;
@@ -33,7 +24,6 @@
       * {
         box-sizing: border-box;
       }
-
       body {
         margin: 0;
         font-family: var(--sans);
@@ -54,7 +44,7 @@
       .container {
         max-width: 980px;
         margin: 0 auto;
-        padding: 32px 18px 70px;
+        padding: 32px 18px 72px;
       }
 
       header {
@@ -63,7 +53,7 @@
         align-items: center;
         gap: 16px;
         flex-wrap: wrap;
-        margin-bottom: 26px;
+        margin-bottom: 22px;
       }
 
       .brand {
@@ -71,36 +61,41 @@
         align-items: center;
         gap: 14px;
       }
-
       .logo {
         width: 48px;
         height: 48px;
         border-radius: 16px;
-        background: linear-gradient(135deg, #b6d8ff, #6ea8fe);
+        background: linear-gradient(135deg, #e6f0ff, #9cc6ff);
         color: #0a1024;
         font-weight: 900;
         display: grid;
         place-items: center;
         box-shadow: var(--shadow);
+        border: 1px solid rgba(255, 255, 255, 0.18);
       }
 
       .title h1 {
         margin: 0;
         font-size: 22px;
       }
-
       .title p {
         margin: 4px 0 0;
         font-size: 13px;
         color: var(--muted);
       }
 
+      .chip-row {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
       .chip {
         padding: 8px 12px;
         border-radius: 999px;
         border: 1px solid var(--border);
         background: rgba(255, 255, 255, 0.04);
         font-size: 13px;
+        color: var(--ice);
       }
 
       .hero,
@@ -119,14 +114,18 @@
 
       h2,
       h3 {
-        margin-top: 0;
+        margin: 0 0 10px;
       }
-
       p,
       li {
         color: var(--muted);
         line-height: 1.55;
         font-size: 14px;
+        margin: 8px 0 0;
+      }
+      ul {
+        margin: 10px 0 0;
+        padding-left: 18px;
       }
 
       .grid {
@@ -134,7 +133,6 @@
         grid-template-columns: 1fr;
         gap: 14px;
       }
-
       @media (min-width: 820px) {
         .grid {
           grid-template-columns: 1.2fr 0.8fr;
@@ -151,45 +149,89 @@
         white-space: pre;
         overflow-x: auto;
         color: var(--ice);
+        margin-top: 10px;
       }
 
-      /* 👤 TEAM */
+      .two-col {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 14px;
+        margin-top: 10px;
+      }
+      @media (min-width: 820px) {
+        .two-col {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      .label {
+        display: inline-block;
+        font-size: 12px;
+        color: var(--ice);
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.04);
+        padding: 6px 10px;
+        border-radius: 999px;
+        margin-top: 8px;
+      }
+
+      /* TEAM */
       .team {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
         gap: 14px;
-        margin-top: 14px;
+        margin-top: 12px;
       }
-
       .member {
-        text-align: center;
+        display: flex;
+        gap: 12px;
+        align-items: center;
         padding: 14px;
         border-radius: 16px;
         background: rgba(255, 255, 255, 0.04);
         border: 1px solid var(--border);
       }
-
-      .avatar {
-        width: 96px;
-        height: 96px;
-        margin: 0 auto 10px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #e6f0ff, #9cc6ff);
+      .avatar-wrap {
+        width: 72px;
+        height: 72px;
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        background: rgba(0, 0, 0, 0.25);
+        box-shadow: 0 10px 22px rgba(0, 0, 0, 0.35);
+        overflow: hidden;
+        flex: 0 0 auto;
         display: grid;
         place-items: center;
-        color: #0a1024;
-        font-size: 32px;
-        font-weight: 700;
       }
-
+      .avatar-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .avatar-placeholder {
+        font-weight: 800;
+        color: #0a1024;
+        width: 100%;
+        height: 100%;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, #e6f0ff, #9cc6ff);
+      }
       .member h4 {
-        margin: 6px 0 2px;
+        margin: 0;
         font-size: 15px;
       }
-
-      .member span {
+      .member .role {
+        margin: 4px 0 0;
         font-size: 12px;
         color: var(--muted);
+      }
+
+      .divider {
+        height: 1px;
+        background: rgba(255, 255, 255, 0.1);
+        margin: 14px 0;
       }
 
       footer {
@@ -198,6 +240,26 @@
         font-size: 13px;
         color: var(--muted);
         opacity: 0.9;
+      }
+
+      /* small links list */
+      .mini-nav {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 12px;
+      }
+      .mini-nav a {
+        font-size: 13px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.03);
+        color: var(--ice);
+        text-decoration: none;
+      }
+      .mini-nav a:hover {
+        background: rgba(255, 255, 255, 0.06);
       }
     </style>
   </head>
@@ -209,69 +271,324 @@
           <div class="logo">E</div>
           <div class="title">
             <h1>Elimatrix</h1>
-            <p>Pure Linear Algebra • No NumPy • Winter Edition ❄️</p>
+            <p>Linear Algebra • No External libraries • Happy New Year ❄️</p>
           </div>
         </div>
-        <div>
+
+        <div class="chip-row">
           <span class="chip">Python 3</span>
           <span class="chip">Fractions</span>
           <span class="chip">Gauss / RREF</span>
+          <span class="chip">SLE: 0 / 1 / ∞</span>
+          <span class="chip">Determinants / Inverse Matrix</span>
+          <span class="chip">Eigenvalues / eigen</span>
+          <span class="chip">Random Matrixes</span>
         </div>
       </header>
 
-      <section class="hero">
+      <section class="hero" id="about">
         <h2>О проекте</h2>
         <p>
-          <b>Elimatrix</b> — учебная библиотека линейной алгебры, реализующая
-          метод Гаусса, RREF, ранг и анализ систем линейных уравнений
-          <b>с нуля</b>, без внешних библиотек.
+          <b>Elimatrix</b> — учебная библиотека линейной алгебры, в которой мы
+          реализовали метод Гаусса и связанные задачи <b>с нуля</b> (без NumPy).
         </p>
+
+        <div class="mini-nav">
+          <a href="#usage">Примеры</a>
+          <a href="#algorithm">Алгоритм</a>
+          <a href="#architecture">Архитектура</a>
+          <a href="#modules">Модули</a>
+          <a href="#tests">Тесты</a>
+          <a href="#team">Участники</a>
+        </div>
       </section>
 
       <div class="grid">
-        <section class="card">
-          <h3>Функциональность</h3>
+        <section class="card" id="features">
+          <h3>Что умеет Elimatrix</h3>
           <ul>
-            <li>RREF и приведение матриц</li>
-            <li>Rank матрицы</li>
-            <li>Анализ СЛУ: 0 / 1 / ∞ решений</li>
-            <li>Генерация случайных матриц</li>
+            <li>
+              <b>rref(A)</b> — приведённая ступенчатая форма матрицы (RREF)
+            </li>
+            <li>
+              <b>rref_augmented(A, b)</b> — RREF для расширенной матрицы
+              <code>[A|b]</code>
+            </li>
+            <li><b>rank(A)</b> — ранг матрицы</li>
+            <li>
+              <b>analyze_sle(A, b)</b> — анализ СЛУ: нет / единственное /
+              бесконечно много решений
+            </li>
+            <li>
+              <b>random_matrix()</b>, <b>random_system</b> — генераторы для
+              тестов и демо
+            </li>
+            <li><b>determinant()</b> — поиск детерминанта</li>
+            <li><b>inverse()</b> — поиск обратной матрицы</li>
           </ul>
+          <span class="label">Без внешних библиотек</span>
         </section>
 
-        <section class="card">
-          <h3>Пример использования</h3>
+        <section class="card" id="quickstart">
+          <h3>Быстрый старт</h3>
+          <p>Запуск тестов из папки <code>FINAL</code>:</p>
           <div class="code">
-            from elimatrix import random_system, analyze_sle A, b =
-            random_system(3) res = analyze_sle(A, b) print(res["status"])
+            python -m tests.test_gauss_rref python -m tests.test_sle_analyze
+            python -m tests.test_det_inv
+          </div>
+          <p>Пример импорта:</p>
+          <div class="code">
+            from elimatrix import rref, rank, analyze_sle from elimatrix.utils
+            import random_system
           </div>
         </section>
       </div>
 
-      <section class="card">
-        <h3>Участники проекта</h3>
-        <div class="team">
-          <div class="member">
-            <img src="/pictures/hadija.jpg" />
-            <h4>Хадижа</h4>
-            <span>Eigen • Factorizations • NumMethods </span>
-          </div>
+      <section class="card" id="usage">
+        <h3>Примеры использования (ввод и вывод)</h3>
+        <p>Ниже наша библиотека делает и что можно ожидать на выходе.</p>
 
-          <div class="member">
-            <img src="/pictures/saida.jpg" />
-            <h4>Саида</h4>
-            <span>Tests • Gauss Elemination • SLE</span>
-          </div>
+        <div class="divider"></div>
 
-          <div class="member">
-            <img src="/pictures/datiya.jpg" />
-            <h4>Дария</h4>
-            <span>Determinant • Tests • Inverse Matrix</span>
+        <h4 style="margin: 0">1) RREF для матрицы</h4>
+        <div class="two-col">
+          <div>
+            <span class="label">Ввод</span>
+            <div class="code">
+              from elimatrix import rref A = [ [2, 4, -2], [4, 9, -3], [-2, -3,
+              7] ] M = rref(A) print(M)
+            </div>
+          </div>
+          <div>
+            <span class="label">Вывод (пример)</span>
+            <div class="code">RREF(A): [1, 0, 0] [0, 1, 0] [0, 0, 1]</div>
+            <p>
+              Вывод зависит от матрицы; тут пример, когда матрица обратима
+              (полный ранг).
+            </p>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <h4 style="margin: 0">2) Ранг матрицы</h4>
+        <div class="two-col">
+          <div>
+            <span class="label">Ввод</span>
+            <div class="code">
+              from elimatrix import rank A = [ [1, 2], [2, 4] ] print(rank(A))
+            </div>
+          </div>
+          <div>
+            <span class="label">Вывод</span>
+            <div class="code">1</div>
+            <p>Вторая строка = 2× первая → строки зависимы → ранг 1.</p>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <h4 style="margin: 0">3) Анализ СЛУ (0 / 1 / ∞ решений)</h4>
+
+        <div class="two-col">
+          <div>
+            <span class="label">Нет решений</span>
+            <div class="code">
+              from elimatrix import analyze_sle A = [ [1, 1], [1, 1] ] b = [1,
+              2] res = analyze_sle(A, b) print(res["status"]) print(res["rref"])
+            </div>
+          </div>
+          <div>
+            <span class="label">Вывод (пример)</span>
+            <div class="code">
+              no solutions RREF([A|b]): [1, 1, 1] [0, 0, 1] # 0 = 1
+              (противоречие)
+            </div>
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div>
+            <span class="label">Единственное решение</span>
+            <div class="code">
+              A = [ [1, 2], [3, 4] ] b = [5, 11] res = analyze_sle(A, b)
+              print(res["status"]) print(res["rankA"], res["rankAb"])
+            </div>
+          </div>
+          <div>
+            <span class="label">Вывод (пример)</span>
+            <div class="code">unique solution 2 2</div>
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div>
+            <span class="label">Бесконечно много решений</span>
+            <div class="code">
+              A = [ [1, 1], [2, 2] ] b = [2, 4] res = analyze_sle(A, b)
+              print(res["status"]) print(res["rankA"], res["rankAb"])
+            </div>
+          </div>
+          <div>
+            <span class="label">Вывод (пример)</span>
+            <div class="code">infinitely many solutions 1 1</div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <h4 style="margin: 0">4) Генерация случайных данных (для демо)</h4>
+        <div class="two-col">
+          <div>
+            <span class="label">Ввод</span>
+            <div class="code">
+              from elimatrix.utils import random_system from elimatrix import
+              analyze_sle A, b = random_system(3, -5, 5) res = analyze_sle(A, b)
+              print("A =", A) print("b =", b) print("status =", res["status"])
+            </div>
+          </div>
+          <div>
+            <span class="label">Вывод (пример)</span>
+            <div class="code">
+              A = [[2, -1, 3], [4, 0, 6], [-2, 1, -3]] b = [1, 2, 0] status =
+              infinitely many solutions
+            </div>
           </div>
         </div>
       </section>
 
-      <footer>Elimatrix ❄️ Winter 2025</footer>
+      <section class="card" id="architecture">
+        <h3>Архитектура библиотеки</h3>
+        <p>Минимальная структура проекта:</p>
+        <div class="code">
+          FINAL/ elimatrix/ __init__.py utils.py gauss.py solve.py decomp.py
+          (determinant, inverse) eigen.py (опционально) tests/
+          test_gauss_rref.py test_sle_analyze.py test_det_inv.py
+        </div>
+        <p>
+          <code>__init__.py</code> — “вход” в библиотеку: экспортирует функции,
+          чтобы писать <code>from elimatrix import rref</code>.
+        </p>
+      </section>
+
+      <section class="card" id="modules">
+        <h3>Модули: кратко что внутри</h3>
+
+        <div class="two-col">
+          <div>
+            <span class="label">elimatrix/gauss.py</span>
+            <ul>
+              <li><b>rref(A)</b> — строит RREF матрицы A</li>
+              <li><b>rref_augmented(A,b)</b> — RREF для [A|b]</li>
+              <li><b>rank(A)</b> — ранг через RREF</li>
+            </ul>
+          </div>
+          <div>
+            <span class="label">elimatrix/solve.py</span>
+            <ul>
+              <li>
+                <b>analyze_sle(A,b)</b> — определяет тип решений по рангам и
+                противоречию
+              </li>
+              <li>
+                возвращает <code>status</code>, <code>rankA</code>,
+                <code>rankAb</code>, <code>rref</code>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div>
+            <span class="label">elimatrix/utils.py</span>
+            <ul>
+              <li><b>random_matrix</b> — матрица со случайными целыми</li>
+              <li><b>random_system</b> — СЛУ Ax=b для демо/тестов</li>
+            </ul>
+          </div>
+          <div>
+            <span class="label">elimatrix/decomp.py</span>
+            <ul>
+              <li>
+                <b>determinant(A)</b> — определитель (через
+                Гаусса/преобразования)
+              </li>
+              <li>
+                <b>inverse(A)</b> — обратная матрица (через расширение [A|I])
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" id="tests">
+        <h3>Тестирование</h3>
+        <p>Тесты проверяют:</p>
+        <ul>
+          <li>корректность ранга на зависимых/случайных матрицах</li>
+          <li>корректность структуры RREF</li>
+          <li>три кейса СЛУ: нет / одно / бесконечно</li>
+          <li>det/inverse</li>
+        </ul>
+        <p>Запуск (из <code>FINAL</code>):</p>
+        <div class="code">
+          python -m tests.test_gauss_rref python -m tests.test_sle_analyze
+          python -m tests.test_det_inv
+        </div>
+      </section>
+
+      <section class="card" id="team">
+        <h3>Участники проекта</h3>
+
+        <div class="team">
+          <div class="member">
+            <div class="avatar-wrap">
+              <img
+                src="/pictures/hadija.jpg"
+                alt="Хадижа"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
+              />
+              <div class="avatar-placeholder" style="display: none">Х</div>
+            </div>
+            <div>
+              <h4>Хадижа</h4>
+              <div class="role">Eigenvalues • eigenvectors • Factorization</div>
+            </div>
+          </div>
+
+          <div class="member">
+            <div class="avatar-wrap">
+              <img
+                src="/pictures/saida.jpg"
+                alt="Саида"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
+              />
+              <div class="avatar-placeholder" style="display: none">С</div>
+            </div>
+            <div>
+              <h4>Саида</h4>
+              <div class="role">Gauss • RREF • SLE analysis</div>
+            </div>
+          </div>
+
+          <div class="member">
+            <div class="avatar-wrap">
+              <img
+                src="/pictures/datiya.jpg"
+                alt="Дария"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
+              />
+              <div class="avatar-placeholder" style="display: none">Д</div>
+            </div>
+            <div>
+              <h4>Дария</h4>
+              <div class="role">Determinant • Inverse • Decomposition</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer>Elimatrix ❄️ Happy New Year • Python</footer>
     </div>
   </body>
 </html>
