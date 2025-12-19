@@ -24,6 +24,7 @@
       * {
         box-sizing: border-box;
       }
+
       body {
         margin: 0;
         font-family: var(--sans);
@@ -61,6 +62,7 @@
         align-items: center;
         gap: 14px;
       }
+
       .logo {
         width: 48px;
         height: 48px;
@@ -78,6 +80,7 @@
         margin: 0;
         font-size: 22px;
       }
+
       .title p {
         margin: 4px 0 0;
         font-size: 13px;
@@ -89,6 +92,7 @@
         gap: 10px;
         flex-wrap: wrap;
       }
+
       .chip {
         padding: 8px 12px;
         border-radius: 999px;
@@ -116,6 +120,7 @@
       h3 {
         margin: 0 0 10px;
       }
+
       p,
       li {
         color: var(--muted);
@@ -123,6 +128,7 @@
         font-size: 14px;
         margin: 8px 0 0;
       }
+
       ul {
         margin: 10px 0 0;
         padding-left: 18px;
@@ -133,6 +139,7 @@
         grid-template-columns: 1fr;
         gap: 14px;
       }
+
       @media (min-width: 820px) {
         .grid {
           grid-template-columns: 1.2fr 0.8fr;
@@ -158,6 +165,7 @@
         gap: 14px;
         margin-top: 10px;
       }
+
       @media (min-width: 820px) {
         .two-col {
           grid-template-columns: 1fr 1fr;
@@ -182,6 +190,7 @@
         gap: 14px;
         margin-top: 12px;
       }
+
       .member {
         display: flex;
         gap: 12px;
@@ -191,6 +200,7 @@
         background: rgba(255, 255, 255, 0.04);
         border: 1px solid var(--border);
       }
+
       .avatar-wrap {
         width: 72px;
         height: 72px;
@@ -203,12 +213,14 @@
         display: grid;
         place-items: center;
       }
+
       .avatar-wrap img {
         width: 100%;
         height: 100%;
         object-fit: cover;
         display: block;
       }
+
       .avatar-placeholder {
         font-weight: 800;
         color: #0a1024;
@@ -218,10 +230,12 @@
         place-items: center;
         background: linear-gradient(135deg, #e6f0ff, #9cc6ff);
       }
+
       .member h4 {
         margin: 0;
         font-size: 15px;
       }
+
       .member .role {
         margin: 4px 0 0;
         font-size: 12px;
@@ -249,6 +263,7 @@
         flex-wrap: wrap;
         margin-top: 12px;
       }
+
       .mini-nav a {
         font-size: 13px;
         padding: 8px 12px;
@@ -258,6 +273,7 @@
         color: var(--ice);
         text-decoration: none;
       }
+
       .mini-nav a:hover {
         background: rgba(255, 255, 255, 0.06);
       }
@@ -321,7 +337,7 @@
             </li>
             <li>
               <b>random_matrix()</b>, <b>random_system</b> — генераторы для
-              тестов и демо
+              тестов
             </li>
             <li><b>determinant()</b> — поиск детерминанта</li>
             <li><b>inverse()</b> — поиск обратной матрицы</li>
@@ -332,15 +348,13 @@
         <section class="card" id="quickstart">
           <h3>Быстрый старт</h3>
           <p>Запуск тестов из папки <code>FINAL</code>:</p>
-          <div class="code">
-            python -m tests.test_gauss_rref python -m tests.test_sle_analyze
-            python -m tests.test_det_inv
-          </div>
+          <div class="code">python -m tests.test_gauss_rref
+python -m tests.test_sle_analyze
+python -m tests.test_det_inv</div>
+
           <p>Пример импорта:</p>
-          <div class="code">
-            from elimatrix import rref, rank, analyze_sle from elimatrix.utils
-            import random_system
-          </div>
+          <div class="code">from elimatrix import rref, rank, analyze_sle
+from elimatrix.utils import random_system</div>
         </section>
       </div>
 
@@ -354,14 +368,25 @@
         <div class="two-col">
           <div>
             <span class="label">Ввод</span>
-            <div class="code">
-              from elimatrix import rref A = [ [2, 4, -2], [4, 9, -3], [-2, -3,
-              7] ] M = rref(A) print(M)
-            </div>
+            <div class="code">from elimatrix import rref
+
+A = [
+  [2, 4, -2],
+  [4, 9, -3],
+  [-2, -3, 7]
+]
+
+M = rref(A)
+print(M)</div>
           </div>
+
           <div>
             <span class="label">Вывод (пример)</span>
-            <div class="code">RREF(A): [1, 0, 0] [0, 1, 0] [0, 0, 1]</div>
+            <div class="code">RREF(A):
+[1, 0, 0]
+[0, 1, 0]
+[0, 0, 1]</div>
+
             <p>
               Вывод зависит от матрицы; тут пример, когда матрица обратима
               (полный ранг).
@@ -375,10 +400,16 @@
         <div class="two-col">
           <div>
             <span class="label">Ввод</span>
-            <div class="code">
-              from elimatrix import rank A = [ [1, 2], [2, 4] ] print(rank(A))
-            </div>
+            <div class="code">from elimatrix import rank
+
+A = [
+  [1, 2],
+  [2, 4]
+]
+
+print(rank(A))</div>
           </div>
+
           <div>
             <span class="label">Вывод</span>
             <div class="code">1</div>
@@ -393,45 +424,67 @@
         <div class="two-col">
           <div>
             <span class="label">Нет решений</span>
-            <div class="code">
-              from elimatrix import analyze_sle A = [ [1, 1], [1, 1] ] b = [1,
-              2] res = analyze_sle(A, b) print(res["status"]) print(res["rref"])
-            </div>
+            <div class="code">from elimatrix import analyze_sle
+
+A = [
+  [1, 1],
+  [1, 1]
+]
+b = [1, 2]
+
+res = analyze_sle(A, b)
+print(res["status"])
+print(res["rref"])</div>
           </div>
+
           <div>
             <span class="label">Вывод (пример)</span>
-            <div class="code">
-              no solutions RREF([A|b]): [1, 1, 1] [0, 0, 1] # 0 = 1
-              (противоречие)
-            </div>
+            <div class="code">no solutions
+RREF([A|b]):
+[1, 1, 1]
+[0, 0, 1]  # 0 = 1 (противоречие)</div>
           </div>
         </div>
 
         <div class="two-col">
           <div>
             <span class="label">Единственное решение</span>
-            <div class="code">
-              A = [ [1, 2], [3, 4] ] b = [5, 11] res = analyze_sle(A, b)
-              print(res["status"]) print(res["rankA"], res["rankAb"])
-            </div>
+            <div class="code">A = [
+  [1, 2],
+  [3, 4]
+]
+b = [5, 11]
+
+res = analyze_sle(A, b)
+print(res["status"])
+print(res["rankA"], res["rankAb"])</div>
           </div>
+
           <div>
             <span class="label">Вывод (пример)</span>
-            <div class="code">unique solution 2 2</div>
+            <div class="code">unique solution
+2 2</div>
           </div>
         </div>
 
         <div class="two-col">
           <div>
             <span class="label">Бесконечно много решений</span>
-            <div class="code">
-              A = [ [1, 1], [2, 2] ] b = [2, 4] res = analyze_sle(A, b)
-              print(res["status"]) print(res["rankA"], res["rankAb"])
-            </div>
+            <div class="code">A = [
+  [1, 1],
+  [2, 2]
+]
+b = [2, 4]
+
+res = analyze_sle(A, b)
+print(res["status"])
+print(res["rankA"], res["rankAb"])</div>
           </div>
+
           <div>
             <span class="label">Вывод (пример)</span>
-            <div class="code">infinitely many solutions 1 1</div>
+            <div class="code">infinitely many solutions
+1 1</div>
           </div>
         </div>
 
@@ -441,30 +494,42 @@
         <div class="two-col">
           <div>
             <span class="label">Ввод</span>
-            <div class="code">
-              from elimatrix.utils import random_system from elimatrix import
-              analyze_sle A, b = random_system(3, -5, 5) res = analyze_sle(A, b)
-              print("A =", A) print("b =", b) print("status =", res["status"])
-            </div>
+            <div class="code">from elimatrix.utils import random_system
+from elimatrix import analyze_sle
+
+A, b = random_system(3, -5, 5)
+res = analyze_sle(A, b)
+
+print("A =", A)
+print("b =", b)
+print("status =", res["status"])</div>
           </div>
+
           <div>
             <span class="label">Вывод (пример)</span>
-            <div class="code">
-              A = [[2, -1, 3], [4, 0, 6], [-2, 1, -3]] b = [1, 2, 0] status =
-              infinitely many solutions
-            </div>
+            <div class="code">A = [[2, -1, 3], [4, 0, 6], [-2, 1, -3]]
+b = [1, 2, 0]
+status = infinitely many solutions</div>
           </div>
         </div>
       </section>
 
       <section class="card" id="architecture">
         <h3>Архитектура библиотеки</h3>
-        <p>Минимальная структура проекта:</p>
-        <div class="code">
-          FINAL/ elimatrix/ __init__.py utils.py gauss.py solve.py decomp.py
-          (determinant, inverse) eigen.py (опционально) tests/
-          test_gauss_rref.py test_sle_analyze.py test_det_inv.py
-        </div>
+        <p>Структура проекта:</p>
+        <div class="code">FINAL/
+  elimatrix/
+    __init__.py
+    utils.py
+    gauss.py
+    solve.py
+    decomp.py (determinant, inverse)
+    eigen.py (опционально)
+  tests/
+    test_gauss_rref.py
+    test_sle_analyze.py
+    test_det_inv.py</div>
+
         <p>
           <code>__init__.py</code> — “вход” в библиотеку: экспортирует функции,
           чтобы писать <code>from elimatrix import rref</code>.
@@ -479,15 +544,16 @@
             <span class="label">elimatrix/gauss.py</span>
             <ul>
               <li><b>rref(A)</b> — строит RREF матрицы A</li>
-              <li><b>rref_augmented(A,b)</b> — RREF для [A|b]</li>
+              <li><b>rref_augmented(A, b)</b> — RREF для [A|b]</li>
               <li><b>rank(A)</b> — ранг через RREF</li>
             </ul>
           </div>
+
           <div>
             <span class="label">elimatrix/solve.py</span>
             <ul>
               <li>
-                <b>analyze_sle(A,b)</b> — определяет тип решений по рангам и
+                <b>analyze_sle(A, b)</b> — определяет тип решений по рангам и
                 противоречию
               </li>
               <li>
@@ -506,6 +572,7 @@
               <li><b>random_system</b> — СЛУ Ax=b для демо/тестов</li>
             </ul>
           </div>
+
           <div>
             <span class="label">elimatrix/decomp.py</span>
             <ul>
@@ -530,11 +597,11 @@
           <li>три кейса СЛУ: нет / одно / бесконечно</li>
           <li>det/inverse</li>
         </ul>
+
         <p>Запуск (из <code>FINAL</code>):</p>
-        <div class="code">
-          python -m tests.test_gauss_rref python -m tests.test_sle_analyze
-          python -m tests.test_det_inv
-        </div>
+        <div class="code">python -m tests.test_gauss_rref
+python -m tests.test_sle_analyze
+python -m tests.test_det_inv</div>
       </section>
 
       <section class="card" id="team">
@@ -550,6 +617,7 @@
               />
               <div class="avatar-placeholder" style="display: none">Х</div>
             </div>
+
             <div>
               <h4>Хадижа</h4>
               <div class="role">Eigenvalues • eigenvectors • Factorization</div>
@@ -565,6 +633,7 @@
               />
               <div class="avatar-placeholder" style="display: none">С</div>
             </div>
+
             <div>
               <h4>Саида</h4>
               <div class="role">Gauss • RREF • SLE analysis</div>
@@ -580,6 +649,7 @@
               />
               <div class="avatar-placeholder" style="display: none">Д</div>
             </div>
+
             <div>
               <h4>Дария</h4>
               <div class="role">Determinant • Inverse • Decomposition</div>
