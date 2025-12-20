@@ -411,8 +411,8 @@ header > * {
         <div class="mini">⛄ Тураркызы Дария</div>
       </div>
       <div class="card">
-        <h3> Eigen </h3>
-        <p>Собственные значения/векторы — модуль выделен отдельно.</p>
+        <h3>  Eigenvalues / LU / QR </h3>
+        <p>Собственные значения/векторы. Численные методы -  QR и LU разложения</p>
         <div class="mini">⛄ Момунова Хадижа</div>
       </div>
     </div>
@@ -451,8 +451,23 @@ header > * {
         <p>Генерация тестовых матриц и систем Ax=b для экспериментов.</p>
       </div>
       <div class="card">
+        <h3>Eigenvalues/Eigenvectors</h3>
+        <p> Собственные значения и векторы:
+          • аналитически для 2×2
+          • power method для доминирующего λ
+          . </p>
+      </div>     
+      <div class="card">
+        <h3>LU decomposition</h3>
+        <p>Разложение A = LU (метод Дулиттла). Решение СЛАУ за O(n²) после разложения. <p>
+      </div>
+      <div class="card">
+        <h3>QR decomposition</h3>
+        <p>Gram–Schmidt разложение. Численный метод решения СЛАУ (float).</p>
+      </div>
+      <div class="card">
         <h3>Без ошибок округления</h3>
-        <p>В Гауссе используется <b>fractions.Fraction</b>, поэтому всё честно.</p>
+        <p>В Гауссе используется <b>fractions.Fraction</b> в QR - float, как численный метод </p>
       </div>
     </div>
   </section>
@@ -469,20 +484,23 @@ header > * {
     <div class="code">
 FINAL/
 ├── elimatrix/
-│   ├── __init__.py
 │   ├── gauss.py
 │   ├── solve.py
-│   ├── utils.py
 │   ├── decomp.py
-│   └── eigen.py
-│
+│   ├── decomposition.py
+│   ├── eigen.py
+│   ├── utils.py
+│   └── __init__.py
 ├── tests/
 │   ├── test_gauss_rref.py
 │   ├── test_sle_analyze.py
-│   └── test_det_inv.py
-│
-└── readme.txt
+│   ├── test_det_inv.py
+│   ├── test_eigen.py
+│   ├── test_lu.py
+│   └── test_qr.py
+├── examples/
 └── index.html
+
     </div>
   </section>
 
@@ -508,6 +526,26 @@ FINAL/
         <p>analyze_sle(A,b): проверка несовместности + сравнение рангов.</p>
         <div class="mini">Возвращает dict со статусом и rref-матрицей.</div>
       </div>
+      
+
+      <div class="card"> 
+        <h3>elimatrix/eigen.py</h3>
+        <p>• аналитическое вычисление λ для 2×2
+           • собственные векторы
+           • power method для доминирующего собственного значения</p>
+        <div class="mini">Используется для демонстрации спектральных методов.</div>
+      </div>
+
+
+      <div class="card">
+        <h3>elimatrix/decomposition.py</h3>
+        <p>• LU decomposition (Doolittle)
+           • Решение СЛАУ через LU (Fraction)
+           • QR decomposition (Gram–Schmidt)
+           • Численное решение СЛАУ через QR (float).</p>
+        <div class="mini">Показывает связь разложений и методов решения.</div>
+      </div>
+
 
       <div class="card">
         <h3>elimatrix/utils.py</h3>
@@ -523,7 +561,7 @@ FINAL/
 
       <div class="card">
         <h3>tests/*</h3>
-        <p>Набор тестов: структура RREF, ранг, типы решений СЛУ, det/inv.</p>
+        <p>Набор тестов: структура RREF, ранг, типы решений СЛУ, det/inv, Гаусс, LU, QR.</p>
         <div class="mini">Запуск через python -m tests....</div>
       </div>
     </div>
@@ -583,6 +621,45 @@ det = Σ (-1)^c * a[0][c] * det(minor(0,c))</div>
 
       <div class="card">
         <div class="pillTitle">
+          <span class="pill">decomposition.py</span>
+          <h3>LU / QR solve</h3>
+        </div>
+        <p>
+          Код реализует решение СЛАУ двумя способами:
+        </p>
+        <div class="code"><span class="dim">#LU - строго и точно, а QR - численно</span>
+def lu_decomposition(A):
+def solve_lu(A, b):
+def qr_decomposition(A):
+def solve_qr(A, b):</div>
+      </div>
+
+
+    
+      <div class="card">
+        <div class="pillTitle">
+          <span class="pill">eigen.py</span>
+          <h3>Точные собственные значения</h3>
+        </div>
+        <p>
+          Собственные значения 2×2 считаются по формуле через trace и det, но корень из дискриминанта берётся только если он рациональный квадрат.
+        </p>
+        <div class="code"><span class="dim">#типа</span>
+# дискриминант
+D = trace * trace - 4 * det
+if D < 0:
+    raise ValueError("Complex eigenvalues are not supported")
+      
+# sqrt(D) — ТОЛЬКО если точный квадрат
+sqrtD = is_perfect_square(D)
+if sqrtD is None:
+    raise ValueError("Irrational eigenvalues not supported")
+          </div>
+      </div>
+    
+
+      <div class="card">
+        <div class="pillTitle">
           <span class="pill">decomp.py</span>
           <h3>Inverse через adjugate/det</h3>
         </div>
@@ -605,7 +682,10 @@ A^{-1} = adj(A) / det(A)</div>
     </p>
     <div class="code">python -m tests.test_gauss_rref
 python -m tests.test_sle_analyze
-python -m tests.test_det_inv</div>
+python -m tests.test_det_inv
+python -m tests.test_eigen
+python -m tests.test_lu
+python -m tests.test_qr</div>
 
   </section>
 
